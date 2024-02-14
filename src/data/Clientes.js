@@ -1,5 +1,4 @@
 
-
 export async function obtenerClientes(){
     const respuesta = await fetch(import.meta.env.VITE_API_URL)
     const resultado = await respuesta.json()
@@ -21,7 +20,8 @@ export async function agregarCliente(datos){
             body:JSON.stringify(datos), 
             headers:{
                 'Content-Type':'aplication/json'
-            }});
+            }
+        });
         await respuesta.json()
     } catch (error) {
         console.log(error);
@@ -36,7 +36,20 @@ export async function actualizarCliente(id, datos){
             body:JSON.stringify(datos), 
             headers:{
                 'Content-Type':'aplication/json'
-            }});
+            }
+        });
+        await respuesta.json()
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export async function eliminarCliente(id){
+    try {
+        const respuesta = await fetch( `${import.meta.env.VITE_API_URL}/${id}`, { 
+            method: 'DELETE', 
+        });
         await respuesta.json()
     } catch (error) {
         console.log(error);

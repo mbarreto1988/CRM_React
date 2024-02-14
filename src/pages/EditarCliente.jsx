@@ -1,7 +1,7 @@
-import { obtenerCliente, actualizarCliente } from '../data/Clientes'
-import Formulario from '../components/Formulario'
-import { Form, useNavigate, useLoaderData, useActionData, redirect } from 'react-router-dom'
 import Error from '../components/Error'
+import Formulario from '../components/Formulario'
+import { obtenerCliente, actualizarCliente } from '../data/Clientes'
+import { Form, useNavigate, useLoaderData, useActionData, redirect } from 'react-router-dom'
 
 
 export async function loader({params}){
@@ -37,7 +37,6 @@ export async function action({ request, params }){
     }
 
     await actualizarCliente(params.clienteId, datos)
-
     return redirect('/')
 }
 
@@ -56,8 +55,8 @@ function EditarCliente() {
             <div className='bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-20'>
                 {errores?.length && errores.map( (error, i)=> <Error key={i}> {error} </Error>)}
                 <Form method='post'>
-                <Formulario cliente={cliente} />
-                <input type="submit" className='mt.5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg' value='Guardar Cambios' />
+                    <Formulario cliente={cliente} />
+                    <input type="submit" className='mt.5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg' value='Guardar Cambios' />
                 </Form>
             </div>
         </>

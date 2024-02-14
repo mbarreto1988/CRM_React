@@ -3,10 +3,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./components/Layout";
 import ErrorPage from "./components/ErrorPage";
-import EditarCliente, {loader as editarClienteLoader, action as editarClienteAction} from "./pages/EditarCliente";
 import Inicio, { loader as clientesLoader } from "./pages/Inicio";
+import { action as eliminarClienteAction } from './components/Cliente'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NuevoCliente, {action as nuevoClienteAction} from "./pages/NuevoCliente";
+import EditarCliente, {loader as editarClienteLoader, action as editarClienteAction} from "./pages/EditarCliente";
 
 
 const route = createBrowserRouter([
@@ -32,8 +33,12 @@ const route = createBrowserRouter([
         loader: editarClienteLoader,
         action: editarClienteAction,
         errorElement: <ErrorPage />
+      },
+      {
+        path: '/clientes/:clienteId/eliminar',
+        action: eliminarClienteAction
       }
-    ],
+    ]
   },
 ]);
 
